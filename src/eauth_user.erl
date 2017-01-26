@@ -34,7 +34,7 @@ state() -> % get state
         _ -> ok
     end. 
 state(State) -> % write state
-    case wf:config(eauth,function_state_user) of
+    case wf:config(eauth,function_state) of
         {M,F} -> M:F(State);
         _ -> ok
     end.

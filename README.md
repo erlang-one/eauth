@@ -133,8 +133,14 @@ Use `-include_lib("eauth/include/eauth_user.hrl").` in you project for define `#
 * `eauth_user:is_alive(#user{} | any()) -> true | false` – Check for non-deleted user
 
 By default, user (in state) stored in process state.
-You can override `put(State,User) -> User` and `get(State) -> User` functions.
+You can override this if want store user in custom state.
 Just setup `function_state` and `function_state_user` in `sys.config` as `{Mod,Fun}`.
+```erlang
+function_state() -> State % get custom state
+function_state(State) -> State % write custom state
+function_state_user(State) -> User % get from custom state
+function_state_user(State,User) -> State % write to custom state
+```
 
 ## Credits
 
