@@ -3,7 +3,7 @@
 
 ## Overview
 
-* Simple e-mail authorization library for Ur web-application on [n2o](https://github.com/5HT/n2o)/[kvs](https://github.com/synrc/kvs).
+* Simple e-mail authorization library for your web-application on [n2o](https://github.com/5HT/n2o) / [kvs](https://github.com/synrc/kvs).
 
 ## Dependency
 
@@ -125,15 +125,15 @@ All config fields you can find in `eauth/include/eauth.hrl` file, just translate
 
 ## User / State access
 
-** Use `-include_lib("eauth/include/eauth_user.hrl").` in you project for define `#user{}`.**
+Use `-include_lib("eauth/include/eauth_user.hrl").` in you project for define `#user{}`.
 
 * `eauth_user:get() -> #user{} | undefined` – Get session user from database
 * `eauth_user:user() -> #user{} | undefined` – Get user from state
-* `eauth_user:user(User) -> User` -> Write user to state
-* `eauth_user:is_alive(#user{} | any()) -> true | false` -> Check for non-deleted user
+* `eauth_user:user(User) -> User` – Write user to state
+* `eauth_user:is_alive(#user{} | any()) -> true | false` – Check for non-deleted user
 
-By default, user (in state) stored in process state as `erlang:put({eauth_user,user},User)`.
-You can override setter/getter functions.
+By default, user (in state) stored in process state.
+You can override `put(State,User) -> User` and `get(State) -> User` functions.
 Just setup `function_state` and `function_state_user` in `sys.config` as `{Mod,Fun}`.
 
 ## Credits
