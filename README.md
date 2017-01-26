@@ -9,8 +9,8 @@
 
 * WebSocket Application Server for Enterprises [n2o](https://github.com/5HT/n2o)
 * Abstract Term Database [kvs](https://github.com/synrc/kvs)
-* SMTP server and client [Vagabond/gen_smtp](https://github.com/Vagabond/gen_smtp)
-* Unicode eXtention [erlang-unicode/ux](https://github.com/erlang-unicode/ux)
+* SMTP server and client [gen_smtp](https://github.com/Vagabond/gen_smtp)
+* Unicode eXtention [ux](https://github.com/erlang-one/ux)
 
 ## Installation
 
@@ -59,7 +59,7 @@ All config fields you can find in `eauth/include/eauth.hrl` file, just translate
 ```erlang
     case eauth:signin(wf:q(login),wf:q(passwd)) of
         {ok,#user{id=Uid}=User} -> wf:user(Uid);
-        {error,Error} -> wf:warning(?M,"Error signin: ~p",[Error])
+        {error,Error} -> wf:warning(?MODULE,"Error signin: ~p",[Error])
     end
 ```
 
@@ -82,7 +82,7 @@ All config fields you can find in `eauth/include/eauth.hrl` file, just translate
     end
 ```
 
-### Join
+#### Join
 
 * `eauth:join(Mail,JoinMessageFun) -> {error, {Error, Mail2}} | {ok, Mail2)}.`
 * `Error :: network_error | already_registered | wait_activation | wrong_email`
@@ -123,7 +123,9 @@ All config fields you can find in `eauth/include/eauth.hrl` file, just translate
     end
 ```
 
-#### User / State access
+## User / State access
+
+** Use `-include_lib("eauth/include/eauth_user.hrl").` in you project for define `#user{}`.**
 
 * `eauth_user:get() -> #user{} | undefined` – Get session user from database
 * `eauth_user:user() -> #user{} | undefined` – Get user from state

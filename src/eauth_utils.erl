@@ -30,7 +30,6 @@ password_hash(Pass,Salt) ->
     SaltLocal=wf:config(eauth,salt_local,?SALT_LOCAL),
     crypto:hash(wf:config(eauth,hash_algorithm,?HASH_ALGORITHM),list_to_binary([Pass,Salt,SaltLocal])).
 
-% randomize() -> {A1,A2,A3}=erlang:timestamp(), random:seed(A1,A2,A3).
 password() -> password(wf:config(eauth,password_length,?PASSWORD_LENGTH)).
 password(Length) -> password(Length,wf:config(eauth,password_symbols,?PASSWORD_SYMBOLS)).
 password(Length,Symbols) ->
